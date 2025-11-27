@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tertial Store Header (Pure CSS)</title>
+
+    <style>
+        /* 1. Variable Definitions (Replaces Tailwind Config Colors) */
+        :root {
+            --primary-blue: #1e40af; /* Darker blue */
+            --accent-teal: #2dd4bf; /* Bright teal */
+            --gray-900: #111827;
+            --gray-600: #4b5563;
+            --gray-400: #9ca3af;
+            --gray-100: #f3f4f6;
+            --white: #ffffff;
+        }
+
+        /* 2. Base Styling */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 3. Header & Navigation (Replaces sticky, z-50, bg-white, shadow-md) */
+        .main-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: var(--white);
+            /* Equivalent of shadow-md */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+        }
+
+        /* 4. Content Container (Replaces max-w-7xl, mx-auto, px-4, sm:px-6, lg:px-8) */
+        .header-container {
+            max-width: 1280px; /* Equivalent of max-w-7xl */
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        @media (min-width: 640px) { /* sm breakpoint */
+            .header-container {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+        }
+
+        @media (min-width: 1024px) { /* lg breakpoint */
+            .header-container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
+
+        /* 5. Flex Layout (Replaces flex, justify-between, items-center, h-16) */
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 4rem; /* Equivalent of h-16 (64px) */
+        }
+
+        /* 6. Logo Styling (Replaces text-2xl, font-extrabold, text-gray-900, tracking-tight) */
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            letter-spacing: -0.025em;
+            text-decoration: none;
+        }
+
+        .logo-accent {
+            color: var(--accent-teal);
+        }
+
+        /* 7. Desktop Navigation (Replaces hidden md:flex, space-x-8) */
+        .nav-links {
+            display: none; /* hidden by default */
+            gap: 2rem; /* Equivalent of space-x-8 */
+        }
+
+        @media (min-width: 768px) { /* md breakpoint */
+            .nav-links {
+                display: flex; /* md:flex */
+            }
+        }
+
+        .nav-link {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 150ms ease-in-out;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-blue);
+        }
+
+        /* 8. Icon Wrapper (Replaces flex, items-center, space-x-4) */
+        .icon-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 1rem; /* Equivalent of space-x-4 */
+        }
+
+        /* 9. Cart Icon Styling (Replaces w-6, h-6, p-1, rounded-full, hover:bg-gray-100, hover:text-primary-blue) */
+        .cart-link {
+            display: block;
+            color: var(--gray-600);
+            padding: 0.25rem;
+            border-radius: 9999px;
+            transition: color 150ms ease-in-out, background-color 150ms ease-in-out;
+            line-height: 0; /* Ensures the SVG is perfectly centered */
+        }
+
+        .cart-link:hover {
+            color: var(--primary-blue);
+            background-color: var(--gray-100);
+        }
+
+        .svg-icon {
+            width: 1.5rem; /* w-6 */
+            height: 1.5rem; /* h-6 */
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        /* 10. Mobile Menu Button (Replaces md:hidden) */
+        .mobile-menu-btn {
+            display: block;
+            color: var(--gray-600);
+            padding: 0.25rem;
+            border-radius: 0.375rem;
+            transition: color 150ms ease-in-out;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+        .mobile-menu-btn:hover {
+            color: var(--primary-blue);
+        }
+
+        @media (min-width: 768px) { /* md breakpoint */
+            .mobile-menu-btn {
+                display: none; /* md:hidden */
+            }
+        }
+
+        /* 11. Mobile Dropdown Menu (Replaces hidden md:hidden, bg-white, shadow-lg, border-t) */
+        .mobile-menu {
+            display: none; /* hidden by default, toggled by JS */
+            background-color: var(--white);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-top: 1px solid var(--gray-100);
+            padding: 0.5rem 0;
+        }
+        
+        @media (min-width: 768px) { /* md breakpoint */
+             .mobile-menu {
+                display: none !important; /* Force hide on desktop */
+            }
+        }
+
+        .mobile-menu-inner {
+            padding: 0.5rem 0.5rem 0.75rem 0.5rem; /* px-2 pt-2 pb-3 */
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem; /* space-y-1 */
+        }
+
+        @media (min-width: 640px) { /* sm breakpoint */
+            .mobile-menu-inner {
+                padding-left: 0.75rem; /* sm:px-3 */
+                padding-right: 0.75rem; /* sm:px-3 */
+            }
+        }
+
+        .mobile-menu-link {
+            display: block;
+            padding: 0.5rem 0.75rem; /* px-3 py-2 */
+            border-radius: 0.375rem; /* rounded-md */
+            font-size: 1rem; /* text-base */
+            font-weight: 500;
+            color: #374151; /* text-gray-700 */
+            text-decoration: none;
+            transition: background-color 150ms ease-in-out, color 150ms ease-in-out;
+        }
+
+        .mobile-menu-link:hover {
+            background-color: #f9fafb; /* hover:bg-gray-50 */
+            color: var(--primary-blue); /* hover:text-primary-blue */
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header & Navigation -->
+<header class="main-header">
+    <div class="header-container">
+        <div class="header-content">
+            <!-- Logo -->
+            <a href="#" class="logo">
+                Tertial<span class="logo-accent">.</span>Store
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="nav-links">
+                <a href="#shop" class="nav-link">Shop All</a>
+                <a href="#" class="nav-link">New Arrivals</a>
+                <a href="#" class="nav-link">About</a>
+                <a href="#" class="nav-link">Contact</a>
+            </nav>
+
+            <!-- Cart Icon & Mobile Button -->
+            <div class="icon-wrapper">
+                <a href="#" class="cart-link">
+                    <!-- Shopping Cart Icon SVG -->
+                    <svg class="svg-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                </a>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="mobile-menu-btn">
+                    <svg class="svg-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Mobile Menu (Initially hidden) -->
+    <div id="mobile-menu" class="mobile-menu">
+        <div class="mobile-menu-inner">
+            <a href="#shop" class="mobile-menu-link">Shop All</a>
+            <a href="#" class="mobile-menu-link">New Arrivals</a>
+            <a href="#" class="mobile-menu-link">About</a>
+            <a href="#" class="mobile-menu-link">Contact</a>
+        </div>
+    </div>
+</header>
+
+<!-- JavaScript for Mobile Menu Toggle -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const button = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+
+        button.addEventListener('click', () => {
+            // Toggle the CSS 'display: none' property
+            if (menu.style.display === 'flex') {
+                menu.style.display = 'none';
+            } else {
+                menu.style.display = 'flex'; /* Use flex for vertical stacking */
+            }
+        });
+    });
+</script>
+</body>
+</html>

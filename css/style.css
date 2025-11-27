@@ -1,0 +1,194 @@
+/* 1. Variable Definitions (Replaces Tailwind Config Colors) */
+:root {
+    --primary-blue: #1e40af; /* Darker blue */
+    --accent-teal: #2dd4bf; /* Bright teal */
+    --gray-900: #111827;
+    --gray-600: #4b5563;
+    --gray-400: #9ca3af;
+    --gray-100: #f3f4f6;
+    --white: #ffffff;
+}
+
+.pattern-bg-tiles {
+    height: 100%;
+    width: 100%;
+    /*
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow:hidden;
+    */
+    /*
+    display: flex;
+    justify-content: center;
+    */
+
+    background-image: 
+        linear-gradient(to right, lightgray 1px, transparent 1px),
+        linear-gradient(to bottom, lightgray 2px, transparent 1px);
+    background-size: 50px 50px;
+    background-color: white;
+}
+
+.pattern-2-bg-tiles-variant-1 {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* You can remove the background-color for transparency or change it */
+    background-color: #f5f5f5; /* A very light off-white */
+    
+    background-image: 
+        /* Vertical lines: darker gray, 1px thick, repeated every 25px */
+        linear-gradient(to right, #ccc 1px, transparent 1px),
+        /* Horizontal lines: darker gray, 2px thick, repeated every 25px */
+        linear-gradient(to bottom, #ccc 2px, transparent 1px);
+        
+    /* Change the size of the 'tile' from 50px to 25px */
+    background-size: 25px 25px;
+}
+
+.pattern-2-bg-tiles-variant-2-stripes {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #ffffff; /* White background */
+    
+    background-image: 
+        /* One set of diagonal lines (e.g., top-right to bottom-left) */
+        /* The opposite set of diagonal lines (e.g., top-left to bottom-right) */
+        linear-gradient(45deg, transparent 75%, gray 75%, lightblue 78%),
+        /* linear-gradient(-45deg, transparent 75%, black 75%, lightblue 77%), */
+        linear-gradient(-45deg, transparent 75%, lightblue 75%, lightblue 100%),
+        linear-gradient(45deg, transparent 75%, lightblue 75%, lightblue 100%);
+    /* The size of the repeating diagonal pattern unit */
+    background-size: 50px 50px;
+}
+
+
+.pattern-2-bg-tiles-variant-3-dots {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #fffaf0; /* A creamy background color */
+    
+    background-image: 
+        /* The radial-gradient creates the dot */
+        radial-gradient(circle at center, #90ee90 3px, transparent 3px);
+        
+    /* This defines the spacing between the centers of the dots */
+    background-size: 40px 40px;
+}
+
+.dropbtn {
+    /*button style*/
+    border: none;
+    background-color: #5c5c5c;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 7px; 
+    box-shadow: 4px 4px 9px rgba(0,0,0,0.6);
+    padding: 4px 24px;
+    transition-duration: 0.2s;
+} /* link style, could be used for buttons aswell, well the b originaly meant button but changed to a for link buttons ile change it.*/
+
+
+.nav-dropdown {
+    display:inline-block;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-decoration: none; /* removes the underline from links */
+
+}
+
+
+.dropdown-content {
+    background-color: #5c5c5c;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    list-style-type: none; 
+    text-decoration: none;
+    display: none;
+    position: absolute;
+    min-width: 130px;
+    margin:0;
+    padding: 12px 16px;
+    border-radius: 7px; 
+}
+
+.dropdown-content li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 4px 4px;
+    border-radius: 7px; 
+    transition-duration: 0.2s;
+}
+
+.dropbtn:hover {
+    background-color: #464646;
+    color: white;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+    transform: translateY(1px);
+}
+
+.nav-dropdown:hover  .dropdown-content{
+    display: block;
+}
+
+.dropdown-content li a:hover {
+    background-color: #464646;
+    color: white;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+    transform: translateY(1px);
+}
+
+
+
+
+/* */
+
+/* Style for the arrow inside the button */
+.dropdown-arrow {
+    display: inline-block;
+    margin-left: 5px; /* Space between "Meny" and the arrow */
+    /* Ensure the transition is smooth */
+    transition: transform 0.1s ease-in-out; 
+    /* The arrow starts pointing right */
+    font-size: smaller;
+}
+
+/* Rotate the arrow when the mouse hovers over the entire dropdown area */
+.nav-dropdown:hover .dropdown-arrow {
+    /* Rotates the right-arrow (&#9654;) 90 degrees to point DOWN */
+    transform: rotate(90deg);
+}
+
+/* Keep the rest of your dropdown CSS as is: */
+.nav-dropdown:hover  .dropdown-content{
+    display: block;
+}
+
+
+/* with article fills, so the footer is at the bottom of the page ect, usefull */
+/*
+article {
+    flex-direction: column;
+    min-height: 100vh;
+    flex-grow: 1;
+
+}
+*/
+.footer {
+    background-color: #333; 
+    color: white; 
+    text-align: center; 
+    padding: 10px; 
+    margin: 0;
+    overflow: hidden;
+}
+

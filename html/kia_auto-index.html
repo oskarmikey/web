@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <!--faktist skulle den heta kiea-auto-index.html men det blir inte lika roligt namn som kia?-->
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+        <title>Ikea möbler</title>
+        <link rel="icon" type="empty" href="https://gymnasieskolor.orebro.se/images/18.639484fa14f307c14aed13f/1440656639987/Tullangen_CMYK_Sv.png">
+        <link rel="stylesheet" href="../css/style.css">
+
+        <style>
+
+            /* Style for the arrow inside the button */
+            .dropdown-arrow {
+                display: inline-block;
+                margin-left: 5px; /* Space between "Meny" and the arrow */
+                /* Ensure the transition is smooth */
+                transition: transform 0.1s ease-in-out; 
+                /* The arrow starts pointing right */
+            }
+
+            /* Rotate the arrow when the mouse hovers over the entire dropdown area */
+            .nav-dropdown:hover .dropdown-arrow {
+                /* Rotates the right-arrow (&#9654;) 90 degrees to point DOWN */
+                transform: rotate(90deg);
+            }
+
+            /* Keep the rest of your dropdown CSS as is: */
+            .nav-dropdown:hover  .dropdown-content{
+                display: block;
+            }
+
+
+            header {
+                position: relative;
+            }
+
+            nav {
+                position: absolute;
+                align-items: center;
+                top:20px;
+                left:5vb;
+                z-index: 1;
+            }
+            aside {
+                position: absolute;
+                top: 100px;
+                left: 5px;
+                width: 300px;
+                padding: 10px;
+                background-color: rgba(255, 255, 255, 0.8);
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            main {
+                position:absolute;
+                top: 140px;
+                right:20vb;
+                
+            }
+
+        </style>
+    </head>
+
+    <body class="pattern-bg-tiles">
+        <header>
+            <h1 style="text-align: center;">Kalender</h1>
+            <p>Kalender & upgifter & prov tider & schema hanterare & m.m. </p>
+            <nav>
+                <div class="nav-dropdown"> 
+                    <button class="dropbtn">
+                        Meny <span class="dropdown-arrow">&#9654;</span>
+                    </button>
+                    <ul class="dropdown-content">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="visitkort.html">Visitkort</a></li>
+                        <li><a href="G-Inlämning-8-Navigation-Bar.html">error</a></li>
+                        <li><a href="home.html">hus</a></li>
+                        <li><a href="pr-project.html">pr</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <aside>
+            <p>Denna kalender är kopplad till mitt google konto, så jag kan enkelt lägga till saker från min mobil eller dator.</p>
+            <p>Jag har valt att dela med mig av denna kalender så att ni kan se hur jag har planerat min tid.</p>
+            <p>Ni kan även lägga till denna kalender i er egen google kalender genom att använda följande länk:</p>
+            <p><a href="https://calendar.google.com/calendar/u/0?cid=a2lhLmF1dG9pbmZvQGdtYWlsLmNvbQ">Länk till min kalender</a></p>
+        </aside> 
+        <main>
+            <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Europe%2FStockholm&amp;src=a2lhLmF1dG9pbmZvQGdtYWlsLmNvbQ&amp;color=%2329527A&amp;showTitle=0&amp;showNav=1&amp;showDate=1&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+        </main>
+        
+    </body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <title>Drop Down Menu upg</title>
+        <link rel="icon" type="empty" href="https://gymnasieskolor.orebro.se/images/18.639484fa14f307c14aed13f/1440656639987/Tullangen_CMYK_Sv.png">
+
+        <style>
+            /* ==================================================================== */
+            /* 0. CONFIGURATION (VARIABLES) */
+            /* ==================================================================== */
+            :root {
+                --primary-blue: #1e40af; /* Darker blue */
+                --accent-teal: #2dd4bf; /* Bright teal */
+                --gray-900: #111827;
+                --gray-600: #4b5563;
+                --gray-400: #9ca3af;
+                --gray-100: #f3f4f6;
+                --white: #ffffff;
+            }
+
+            /* ==================================================================== */
+            /* 1. BACKGROUND PATTERN UTILITIES (FROM style.css) */
+            /* ==================================================================== */
+            .pattern-bg-tiles {
+                height: 100%;
+                width: 100%;
+                background-image: 
+                    linear-gradient(to right, lightgray 1px, transparent 1px),
+                    linear-gradient(to bottom, lightgray 2px, transparent 1px);
+                background-size: 50px 50px;
+                background-color: white;
+            }
+
+            /* ==================================================================== */
+            /* 2. NAVIGATION & DROPDOWN COMPONENTS (FROM style.css & OVERRIDES) */
+            /* ==================================================================== */
+
+            /* Dropdown Button Base Style */
+            .dropbtn {
+                /* base styles from style.css */
+                border: none;
+                background-color: #5c5c5c;
+                color: white;
+                text-align: center;
+                text-decoration: none;
+                cursor: pointer;
+                display: inline-block; /* Overridden below */
+                font-size: 16px;
+                border-radius: 7px; /* Overridden below */
+                box-shadow: 4px 4px 9px rgba(0,0,0,0.6);
+                padding: 4px 24px;
+                transition-duration: 0.2s;
+                
+                /* OVERRIDES from HTML <style> */
+                display: flex; /* Override for internal flex alignment */
+                border-radius: 0px; /* Override */
+                margin-top: 2px; /* Override */
+            } 
+
+            .dropbtn:hover {
+                background-color: #464646;
+                color: white;
+                box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+                transform: translateY(1px);
+            }
+
+            /* Dropdown Wrapper Container */
+            .nav-dropdown {
+                display:inline-block;
+                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                text-decoration: none;
+
+                /* OVERRIDES from HTML <style> */
+                margin-left: 16px;
+                margin-right: 16px;
+            }
+            
+            nav { /* Applied to nav-dropdown parent for center alignment */
+                align-items: center; 
+            }
+
+            /* Dropdown Menu Content */
+            .dropdown-content {
+                background-color: #5c5c5c;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                list-style-type: none; 
+                text-decoration: none;
+                display: none;
+                position: absolute;
+                min-width: 130px;
+                margin:0;
+                padding: 12px 16px;
+                border-radius: 7px; /* Overridden below */
+
+                /* OVERRIDES from HTML <style> */
+                border-radius: 1px;
+            }
+
+            .nav-dropdown:hover  .dropdown-content{
+                display: block;
+            }
+
+            /* Individual Dropdown Link Style */
+            .dropdown-content li a {
+                color: white;
+                text-decoration: none;
+                display: block;
+                padding: 4px 4px;
+                border-radius: 7px; /* Overridden below */
+                transition-duration: 0.2s;
+
+                /* OVERRIDES from HTML <style> */
+                border-radius: 0px;
+            }
+
+            .dropdown-content li a:hover {
+                background-color: #464646;
+                color: white;
+                box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+                transform: translateY(1px);
+            }
+
+            /* Dropdown Arrow Styling */
+            .dropdown-arrow {
+                display: inline-block;
+                margin-left: 5px;
+                transition: transform 0.1s ease-in-out; 
+                font-size: smaller;
+            }
+
+            /* Arrow rotation on hover */
+            .nav-dropdown:hover .dropdown-arrow {
+                transform: rotate(90deg);
+            }
+
+            /* Specific style for a larger, transparent dropbtn variant */
+            .lg-dropbtn .dropbtn{
+                background-color: transparent;
+                color:inherit;
+            }
+
+            /* ==================================================================== */
+            /* 3. CORE LAYOUTS & CONTAINERS (FROM style.css & OVERRIDES) */
+            /* ==================================================================== */
+
+            /* Main Header Container */
+            .main-header {
+                position: sticky;
+                top: 0;
+                z-index: 50;
+                background-color: var(--white);
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+            }
+
+            /* Header Inner Content Wrapper */
+            .header-container {
+                display:flexbox;
+            }
+
+            /* Header Flex Layout */
+            .header-content {
+                display: flex;
+                align-items: center;
+                height: 64px;
+            }
+
+            /* Logo Styling */
+            .logo {
+                display: flex;
+                font-size: 28px;
+                font-weight: 800;
+                color: var(--gray-900);
+                letter-spacing: -0.025em;
+                text-decoration: none;
+                /* margin-left: auto moves it after "Meny" */
+                margin-left: auto; 
+            }
+
+            .logo-accent {
+                color: var(--accent-teal);
+            }
+
+            /* Article (Main Content) Styling */
+            .article {
+                flex-direction: column;
+                min-height: 90vh;
+                align-items: center;
+                display:flex;
+            }
+
+            /* Box Styling for text containers */
+            .text_art {
+                border: 2px solid rgb(0, 0, 0, 0.3); 
+                border-radius: 10px; 
+                background-color: rgba(156, 156, 156, 0.5); 
+                box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+                padding: 10px;
+                box-sizing: border-box;
+            }
+
+            /* Content Layout inside text_art box */
+            .text-content {
+                display: flex; 
+                flex-direction: column;
+                align-items: center; 
+                justify-content: center; 
+                font-family: 'Arial', sans-serif;
+                color: #333;
+                font-size: 16px;
+            }
+
+            /* Helper class for different fonts */
+            .serif-font {
+                font-family: 'Georgia', serif;
+                font-size: 20px;
+            }
+
+            /* Footer Element Styling */
+            .footer {
+                background-color: #333; 
+                color: white; 
+                text-align: center; 
+                padding: 10px; 
+                margin: 0;
+                overflow: hidden;
+            }
+        </style>
+    </head>
+
+    <body class ="pattern-bg-tiles">
+        <header class="main-header">
+            <div class="header-container">
+                <div class="header-content">
+                    <!--   -->
+                    <nav class="nav-dropdown"> 
+                        <button class="dropbtn" >Meny 
+                            <span class="dropdown-arrow">&#9654;</span>
+                        </button>
+                        <ul class="dropdown-content">
+                            <li><a href="visitkort.html">Visitkort</a></li>
+                            <li><a href="G-Inlämning-8-Navigation-Bar.html">error</a></li>
+                            <li><a href="home.html">hus</a></li>
+                            <li><a href="pr-project.html">pr</a></li>
+                            <li><a href="geminis-generatedsite.html"> lsd</a></li>
+                        </ul>
+                    </nav>
+
+                    <!-- Logo -->
+                    <a href="#" class="logo">
+                        Tertial<span class="logo-accent">.</span>Store
+                    </a>
+
+                    <nav class="nav-dropdown" style="margin-left: auto; margin-right:4vw;"> 
+                        <button class="dropbtn">More 
+                            <span class="dropdown-arrow">&#9654;</span>
+                        </button>
+                        <ul class="dropdown-content">
+                            <li><a href="error.html">Link 1</a></li>
+                            <li><a href="error.html">Link 2</a></li>
+                            <li><a href="error.html">Link 3</a></li>
+                            <li><a href="error.html">Link 4</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <article class="article">
+            <span class="text_art">
+                <div class="text-content">
+                    <p>
+                        At scelerisque per dis hac platea gravida per. Commodo molestie orci montes cum pulvinar. Magna orci tellus dapibus iaculis, semper eu luctus.
+                    </p>
+                    <p>
+                        Morbi convallis viverra porta scelerisque nostra metus commodo volutpat nibh vivamus. Sit mus sodales sem augue cursus habitasse? 
+                        <br>Primis velit nascetur sociis at nisl platea nostra himenaeos malesuada auctor?
+                    </p>
+                    <p>
+                        Ante at nulla ante. Mus semper iaculis taciti porttitor justo. Faucibus ullamcorper risus facilisi? 
+                        <br>Congue aliquet porta placerat nibh nam! Mollis posuere cras massa potenti, varius a felis adipiscing sollicitudin platea mollis ridiculus.
+                    </p>
+                    <p>
+                        Lorem quam dolor duis dis litora vitae id mi velit tellus malesuada.
+                    </p>
+                    <p>
+                        Congue sit vestibulum eu ultricies egestas ultricies vel lacus sagittis risus. Libero tempor dapibus scelerisque natoque.
+                    </p>
+                    <p>
+                        At scelerisque per dis hac platea gravida per. Commodo molestie orci montes cum pulvinar. Magna orci tellus dapibus iaculis, semper eu luctus.
+                    </p>
+                    <p>
+                        Morbi convallis viverra porta scelerisque nostra metus commodo volutpat nibh vivamus. Sit mus sodales sem augue cursus habitasse? 
+                        <br>Primis velit nascetur sociis at nisl platea nostra himenaeos malesuada auctor?
+                    </p>
+                    <p>
+                        Ante at nulla ante. Mus semper iaculis taciti porttitor justo. Faucibus ullamcorper risus facilisi? 
+                        <br>Congue aliquet porta placerat nibh nam! Mollis posuere cras massa potenti, varius a felis adipiscing sollicitudin platea mollis ridiculus.
+                    </p>
+                    <p>
+                        Lorem quam dolor duis dis litora vitae id mi velit tellus malesuada.
+                    </p>
+                    <p>
+                        Congue sit vestibulum eu ultricies egestas ultricies vel lacus sagittis risus. Libero tempor dapibus scelerisque natoque.
+                    </p>
+                </div>
+            </span>
+        </article>
+        <aside>
+            <div class="text_art">
+                <div class="serif-font">
+                    content
+                </div>
+            </div>
+        </aside>
+        <div class="tetfrm"></div>
+        <footer class="footer">
+            &copy; Elev på Tullängsgymnasiet oskar ryd-
+            <p>ee</p>
+        </footer>
+    </body>
+</html>
