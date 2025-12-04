@@ -140,6 +140,7 @@
             }
             
             /* 1. Variable Definitions (Replaces Tailwind Config Colors) */
+            /* Default theme (dark) */
             :root {
                 --primary-blue: #1e40af; /* Darker blue */
                 --accent-teal: #2dd4bf; /* Bright teal */
@@ -158,6 +159,32 @@
 
                 --textartbgcol:#35374680; /* text_art class background colour */
             }
+
+            /* Light theme */
+            .theme-light {
+                background-color: #ffffff;
+            }
+
+           /*.Dark theme */
+            .theme-dark {
+                --primary-blue: #1e40af; /* Darker blue */
+                --accent-teal: #2dd4bf; /* Bright teal */
+                --gray-900: #111827;
+                --gray-600: #4b5563;
+                --gray-400: #9ca3af;
+                --gray-100: #f3f4f6;
+                --white: #ffffff;  /* white */
+
+                --headerbg: #4b5563; /* header background colour */
+                --hrtxtc: #d6d3cd; /* header text colour a */
+                --txtcola: #d6d3cd ; /* default text colour a  */
+
+                --bgpsqcol: #484e51; /* background pattern-squares-colour */
+                --bgpocol: #2a2e2f; /* background pattern-outline-colour */
+
+                --textartbgcol:#35374680; /* text_art class background colour */
+            }   /* You can keep the original root values or override here */
+
             
         </style>
     </head>
@@ -196,60 +223,75 @@
                             <li><a href="error.html">Link 4</a></li>
                         </ul>
                     </nav>
+                    <nav> <button id="theme-toggle" class="dropbtn">Theme</button></nav>
                 </div>
             </div>
         </header>
-        <aside>
-            <div class="text_art">
-                <div class="serif-font">
-                content
+        <main>
+            <aside>
+                <div class="text_art">
+                    <div class="serif-font">
+                    content
+                    </div>
                 </div>
-            </div>
-        </aside>
-        <article class="article">
-            <span class="text_art">
-                <span class="text-content">
-                    <p>
-                        At scelerisque per dis hac platea gravida per. Commodo molestie orci montes cum pulvinar. Magna orci tellus dapibus iaculis, semper eu luctus.
-                    </p>
-                    <p>
-                        Morbi convallis viverra porta scelerisque nostra metus commodo volutpat nibh vivamus. Sit mus sodales sem augue cursus habitasse? 
-                        <br>Primis velit nascetur sociis at nisl platea nostra himenaeos malesuada auctor?
-                    </p>
-                    <p>
-                        Ante at nulla ante. Mus semper iaculis taciti porttitor justo. Faucibus ullamcorper risus facilisi? 
-                        <br>Congue aliquet porta placerat nibh nam! Mollis posuere cras massa potenti, varius a felis adipiscing sollicitudin platea mollis ridiculus.
-                    </p>
-                    <p>
-                        Lorem quam dolor duis dis litora vitae id mi velit tellus malesuada.
-                    </p>
-                    <p>
-                        Congue sit vestibulum eu ultricies egestas ultricies vel lacus sagittis risus. Libero tempor dapibus scelerisque natoque.
-                    </p>
-                    <p>
-                        At scelerisque per dis hac platea gravida per. Commodo molestie orci montes cum pulvinar. Magna orci tellus dapibus iaculis, semper eu luctus.
-                    </p>
-                    <p>
-                        Morbi convallis viverra porta scelerisque nostra metus commodo volutpat nibh vivamus. Sit mus sodales sem augue cursus habitasse? 
-                        <br>Primis velit nascetur sociis at nisl platea nostra himenaeos malesuada auctor?
-                    </p>
-                    <p>
-                        Ante at nulla ante. Mus semper iaculis taciti porttitor justo. Faucibus ullamcorper risus facilisi? 
-                        <br>Congue aliquet porta placerat nibh nam! Mollis posuere cras massa potenti, varius a felis adipiscing sollicitudin platea mollis ridiculus.
-                    </p>
-                    <p>
-                        Lorem quam dolor duis dis litora vitae id mi velit tellus malesuada.
-                    </p>
-                    <p>
-                        Congue sit vestibulum eu ultricies egestas ultricies vel lacus sagittis risus. Libero tempor dapibus scelerisque natoque.
-                    </p>
+            </aside>
+            <article class="article">
+                <span class="text_art">
+                    <span class="text-content">
+                        <p>
+                            At scelerisque per dis hac platea gravida per. Commodo molestie orci montes cum pulvinar. Magna orci tellus dapibus iaculis, semper eu luctus.
+                        </p>
+                        <p>
+                            Morbi convallis viverra porta scelerisque nostra metus commodo volutpat nibh vivamus. Sit mus sodales sem augue cursus habitasse? 
+                            <br>Primis velit nascetur sociis at nisl platea nostra himenaeos malesuada auctor?
+                        </p>
+                        <p>
+                            Ante at nulla ante. Mus semper iaculis taciti porttitor justo. Faucibus ullamcorper risus facilisi? 
+                            <br>Congue aliquet porta placerat nibh nam! Mollis posuere cras massa potenti, varius a felis adipiscing sollicitudin platea mollis ridiculus.
+                        </p>
+                        <p>
+                            Lorem quam dolor duis dis litora vitae id mi velit tellus malesuada.
+                        </p>
+                        <p>
+                            Congue sit vestibulum eu ultricies egestas ultricies vel lacus sagittis risus. Libero tempor dapibus scelerisque natoque.
+                        </p>
+                        <p>
+                            At scelerisque per dis hac platea gravida per. Commodo molestie orci montes cum pulvinar. Magna orci tellus dapibus iaculis, semper eu luctus.
+                        </p>
+                        <p>
+                            Morbi convallis viverra porta scelerisque nostra metus commodo volutpat nibh vivamus. Sit mus sodales sem augue cursus habitasse? 
+                            <br>Primis velit nascetur sociis at nisl platea nostra himenaeos malesuada auctor?
+                        </p>
+                        <p>
+                            Ante at nulla ante. Mus semper iaculis taciti porttitor justo. Faucibus ullamcorper risus facilisi? 
+                            <br>Congue aliquet porta placerat nibh nam! Mollis posuere cras massa potenti, varius a felis adipiscing sollicitudin platea mollis ridiculus.
+                        </p>
+                        <p>
+                            Lorem quam dolor duis dis litora vitae id mi velit tellus malesuada.
+                        </p>
+                        <p>
+                            Congue sit vestibulum eu ultricies egestas ultricies vel lacus sagittis risus. Libero tempor dapibus scelerisque natoque.
+                        </p>
+                    </span>
                 </span>
-            </span>
-        </article>
+            </article>
+        </main>
         <!--- <div class="text_art"></div> --->
         <footer class="footer">
             &copy; Elev på Tullängsgymnasiet oskar ryd-
             <p>ee</p>
         </footer>
     </body>
+
+    <script>
+        const body = document.body;
+        const toggleBtn = document.getElementById('theme-toggle');
+
+        body.classList.add('theme-dark'); // default
+
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('theme-light');
+            body.classList.toggle('theme-dark');
+        });
+    </script>
 </html>
