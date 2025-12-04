@@ -7,13 +7,37 @@
         <title>Drop Down Menu upg</title>
         <link rel="icon" type="empty" href="https://gymnasieskolor.orebro.se/images/18.639484fa14f307c14aed13f/1440656639987/Tullangen_CMYK_Sv.png">
 
-        <style>
-            /* overides */
+        <style> 
+            /* ---- overides ---- */
             /*
             .footer {
                 display:flexbox;
             }
             */
+
+            .overide-pattern-bg-tiles {
+
+                height: 100%;
+                width: 100%;
+                /*
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow:hidden;
+                */
+                /*
+                display: flex;
+                justify-content: center;
+                */
+                background-image: 
+                    linear-gradient(to right, var(--bgpocol) 1px, transparent 1px),
+                    linear-gradient(to bottom, var(--bgpocol) 2px, transparent 1px);
+                background-size: 50px 50px;
+
+                background-color: var(--bgpsqcol);
+            }
+
+
             .dropdown-content{
                 border-radius: 1px; 
             }
@@ -33,12 +57,9 @@
                 margin-left: 16px;
                 margin-right: 16px;
             }
-
-            .lg-dropbtn {
-                .dropbtn{
-                    background-color: transparent;
-                    color:inherit;
-                }
+            .lg-dropbtn .dropbtn {
+                background-color: transparent;
+                color: inherit;
             }
             /* ========== */
             /* with article fills, so the footer is at the bottom of the page ect, usefull */
@@ -54,7 +75,7 @@
                 /* **Box Styling Only** */
                 border: 2px solid rgb(0, 0, 0, 0.3); 
                 border-radius: 10px; 
-                background-color: rgba(156, 156, 156, 0.5); 
+                background-color: var(--textartbgcol); 
                 box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
                 padding: 10px; /* Add some padding around the content */
                 box-sizing: border-box; /* Include padding in the width/height */
@@ -70,7 +91,7 @@
                 align-items: center; /* Centers items horizontally */
                 justify-content: center; /* Centers items vertically if there is extra space */
                 font-family: 'Arial', sans-serif; /* Example: Set a specific font */
-                color: #333; /* Example: Set a text color */
+                color:  var(--hrtxtc); /* #333; /* Example: Set a text color */
                 font-size: 16px; /* Example: Set a font size */
             }
 
@@ -78,6 +99,7 @@
             .serif-font {
                 font-family: 'Georgia', serif;
                 font-size: 20px;
+                color: var(--txtcola)
             }
 
 
@@ -85,7 +107,7 @@
                 position: sticky;
                 top: 0;
                 z-index: 50;
-                background-color: var(--white);
+                background-color: var(--headerbg);
                 /* Equivalent of shadow-md */
                 box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
                 
@@ -93,7 +115,7 @@
 
             /* 4. Content Container (Replaces max-w-7xl, mx-auto, px-4, sm:px-6, lg:px-8) */
             .header-container {
-                display:flexbox;
+                display:flex;
             }
 
             /* 5. Flex Layout (Replaces flex, justify-between, items-center, h-16) */
@@ -107,17 +129,16 @@
                 display: flex;
                 font-size: 28px;
                 font-weight: 800;
-                color: var(--gray-900);
+                color: var(--hrtxtc);
                 letter-spacing: -0.025em;
                 text-decoration: none;
                 margin-left: auto;
                 /*<!-- if 10vw instead it is a bit less dynamic but not locked to the midle--> */
-                
             }
-
             .logo-accent {
                 color: var(--accent-teal);
             }
+            
             /* 1. Variable Definitions (Replaces Tailwind Config Colors) */
             :root {
                 --primary-blue: #1e40af; /* Darker blue */
@@ -126,13 +147,22 @@
                 --gray-600: #4b5563;
                 --gray-400: #9ca3af;
                 --gray-100: #f3f4f6;
-                --white: #ffffff;
+                --white: #ffffff;  /* white */
+
+                --headerbg: #4b5563; /* header background colour */
+                --hrtxtc: #d6d3cd; /* header text colour a */
+                --txtcola: #d6d3cd ; /* default text colour a  */
+
+                --bgpsqcol: #484e51; /* background pattern-squares-colour */
+                --bgpocol: #2a2e2f; /* background pattern-outline-colour */
+
+                --textartbgcol:#35374680; /* text_art class background colour */
             }
             
         </style>
     </head>
 
-    <body class ="pattern-bg-tiles">
+    <body class ="overide-pattern-bg-tiles">
         <header class="main-header">
             <div class="header-container">
                 <div class="header-content">
@@ -151,11 +181,11 @@
                     </nav>
 
                     <!-- Logo -->
-                    <a href="#" class="logo">
+                    <a href="https://tertial.store" class="logo">
                         Tertial<span class="logo-accent">.</span>Store
                     </a>
 
-                    <nav class="nav-dropdown" style="margin-left: auto; margin-right:4vw;"> 
+                    <nav class="nav-dropdown"> 
                         <button class="dropbtn">More 
                             <span class="dropdown-arrow">&#9654;</span>
                         </button>
@@ -169,54 +199,54 @@
                 </div>
             </div>
         </header>
-        <article class="article">
-            <span class="text_art">
-                <div class="text-content">
-                    <p>
-                        At scelerisque per dis hac platea gravida per. Commodo molestie orci montes cum pulvinar. Magna orci tellus dapibus iaculis, semper eu luctus.
-                    </p>
-                    <p>
-                        Morbi convallis viverra porta scelerisque nostra metus commodo volutpat nibh vivamus. Sit mus sodales sem augue cursus habitasse? 
-                        <br>Primis velit nascetur sociis at nisl platea nostra himenaeos malesuada auctor?
-                    </p>
-                    <p>
-                        Ante at nulla ante. Mus semper iaculis taciti porttitor justo. Faucibus ullamcorper risus facilisi? 
-                        <br>Congue aliquet porta placerat nibh nam! Mollis posuere cras massa potenti, varius a felis adipiscing sollicitudin platea mollis ridiculus.
-                    </p>
-                    <p>
-                        Lorem quam dolor duis dis litora vitae id mi velit tellus malesuada.
-                    </p>
-                    <p>
-                        Congue sit vestibulum eu ultricies egestas ultricies vel lacus sagittis risus. Libero tempor dapibus scelerisque natoque.
-                    </p>
-                    <p>
-                        At scelerisque per dis hac platea gravida per. Commodo molestie orci montes cum pulvinar. Magna orci tellus dapibus iaculis, semper eu luctus.
-                    </p>
-                    <p>
-                        Morbi convallis viverra porta scelerisque nostra metus commodo volutpat nibh vivamus. Sit mus sodales sem augue cursus habitasse? 
-                        <br>Primis velit nascetur sociis at nisl platea nostra himenaeos malesuada auctor?
-                    </p>
-                    <p>
-                        Ante at nulla ante. Mus semper iaculis taciti porttitor justo. Faucibus ullamcorper risus facilisi? 
-                        <br>Congue aliquet porta placerat nibh nam! Mollis posuere cras massa potenti, varius a felis adipiscing sollicitudin platea mollis ridiculus.
-                    </p>
-                    <p>
-                        Lorem quam dolor duis dis litora vitae id mi velit tellus malesuada.
-                    </p>
-                    <p>
-                        Congue sit vestibulum eu ultricies egestas ultricies vel lacus sagittis risus. Libero tempor dapibus scelerisque natoque.
-                    </p>
-                </div>
-            </span>
-        </article>
         <aside>
             <div class="text_art">
                 <div class="serif-font">
-                    content
+                content
                 </div>
             </div>
         </aside>
-        <div class="tetfrm"></div>
+        <article class="article">
+            <span class="text_art">
+                <span class="text-content">
+                    <p>
+                        At scelerisque per dis hac platea gravida per. Commodo molestie orci montes cum pulvinar. Magna orci tellus dapibus iaculis, semper eu luctus.
+                    </p>
+                    <p>
+                        Morbi convallis viverra porta scelerisque nostra metus commodo volutpat nibh vivamus. Sit mus sodales sem augue cursus habitasse? 
+                        <br>Primis velit nascetur sociis at nisl platea nostra himenaeos malesuada auctor?
+                    </p>
+                    <p>
+                        Ante at nulla ante. Mus semper iaculis taciti porttitor justo. Faucibus ullamcorper risus facilisi? 
+                        <br>Congue aliquet porta placerat nibh nam! Mollis posuere cras massa potenti, varius a felis adipiscing sollicitudin platea mollis ridiculus.
+                    </p>
+                    <p>
+                        Lorem quam dolor duis dis litora vitae id mi velit tellus malesuada.
+                    </p>
+                    <p>
+                        Congue sit vestibulum eu ultricies egestas ultricies vel lacus sagittis risus. Libero tempor dapibus scelerisque natoque.
+                    </p>
+                    <p>
+                        At scelerisque per dis hac platea gravida per. Commodo molestie orci montes cum pulvinar. Magna orci tellus dapibus iaculis, semper eu luctus.
+                    </p>
+                    <p>
+                        Morbi convallis viverra porta scelerisque nostra metus commodo volutpat nibh vivamus. Sit mus sodales sem augue cursus habitasse? 
+                        <br>Primis velit nascetur sociis at nisl platea nostra himenaeos malesuada auctor?
+                    </p>
+                    <p>
+                        Ante at nulla ante. Mus semper iaculis taciti porttitor justo. Faucibus ullamcorper risus facilisi? 
+                        <br>Congue aliquet porta placerat nibh nam! Mollis posuere cras massa potenti, varius a felis adipiscing sollicitudin platea mollis ridiculus.
+                    </p>
+                    <p>
+                        Lorem quam dolor duis dis litora vitae id mi velit tellus malesuada.
+                    </p>
+                    <p>
+                        Congue sit vestibulum eu ultricies egestas ultricies vel lacus sagittis risus. Libero tempor dapibus scelerisque natoque.
+                    </p>
+                </span>
+            </span>
+        </article>
+        <!--- <div class="text_art"></div> --->
         <footer class="footer">
             &copy; Elev på Tullängsgymnasiet oskar ryd-
             <p>ee</p>
