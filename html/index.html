@@ -1,297 +1,271 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="../css/style.css">
-        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
-        <meta charset="UTF-8">
-        <title>Drop Down Menu upg</title>
-        <link rel="icon" type="empty" href="https://gymnasieskolor.orebro.se/images/18.639484fa14f307c14aed13f/1440656639987/Tullangen_CMYK_Sv.png">
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tertial.Store</title>
 
-        <style> 
-            /* ---- overides ---- */
-            /*
-            .footer {
-                display:flexbox;
-            }
-            */
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://gymnasieskolor.orebro.se/images/18.639484fa14f307c14aed13f/1440656639987/Tullangen_CMYK_Sv.png">
+    <link rel="stylesheet" href="../css/index_style.css">
+    <style>
+        /* ===================================================================================== */
+        /* BASE THEME VARIABLES: All colors & theme toggling happens using these variables       */
+        /* ===================================================================================== */
+        :root {
+            --primary-blue: #1e40af;
+            --accent-teal: #2dd4bf;
+            --gray-900: #111827;
+            --gray-600: #4b5563;
+            --gray-400: #9ca3af;
+            --gray-100: #f3f4f6;
+            --white: #ffffff;
 
-            .overide-pattern-bg-tiles {
+            --headerbg: #4b5563;
+            --hrtxtc: #d6d3cd;
+            --txtcola: #d6d3cd;
 
-                height: 100%;
-                width: 100%;
-                /*
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                overflow:hidden;
-                */
-                /*
-                display: flex;
-                justify-content: center;
-                */
-                background-image: 
-                    linear-gradient(to right, var(--bgpocol) 1px, transparent 1px),
-                    linear-gradient(to bottom, var(--bgpocol) 2px, transparent 1px);
-                background-size: 50px 50px;
+            --bgpsqcol: #484e51;
+            --bgpocol: #2a2e2f;
 
-                background-color: var(--bgpsqcol);
-            }
+            --textartbgcol:#35374680;
+        }
 
+        /* Light theme overrides */
+        .theme-light {
+            --headerbg: #d1d5db;
+            --hrtxtc: #111;
+            --txtcola: #111;
+            --bgpsqcol: #f5f5f5;
+            --bgpocol: #b7bac0;
+            --textartbgcol:#ffffffc9;
+        }
 
-            .dropdown-content{
-                border-radius: 1px; 
-            }
-            .dropdown-content li a {
-                border-radius: 0px; 
-            }
-            .dropbtn {
-                /*button style*/
-                display: flex;
-                border-radius: 0px; 
-                margin-top: 2px;
-            }
-            nav {
-                align-items: center;
-            }
-            .nav-dropdown{
-                margin-left: 16px;
-                margin-right: 16px;
-            }
-            .lg-dropbtn .dropbtn {
-                background-color: transparent;
-                color: inherit;
-            }
-            /* ========== */
-            /* with article fills, so the footer is at the bottom of the page ect, usefull */
-            /*             */
-            .article {
-                flex-direction: column;
-                min-height: 90vh;
-                align-items: center;
-                display:flex;
-            }
+        /* ===================================================================================== */
+        /* BACKGROUND GRID PATTERN (your override version stays default)                         */
+        /* ===================================================================================== */
+        body.overide-pattern-bg-tiles {
+            height: 100%;
+            width: 100%;
+            background-image:
+                linear-gradient(to right, var(--bgpocol) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--bgpocol) 2px, transparent 1px);
+            background-size: 50px 50px;
+            background-color: var(--bgpsqcol);
+            margin: 0;
+        }
 
-            .text_art {
-                /* **Box Styling Only** */
-                border: 2px solid rgb(0, 0, 0, 0.3); 
-                border-radius: 10px; 
-                background-color: var(--textartbgcol); 
-                box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
-                padding: 10px; /* Add some padding around the content */
-                box-sizing: border-box; /* Include padding in the width/height */
-                /* Removed: display, flex-direction, align-items, justify-content */
-            }
+        /* ===================================================================================== */
+        /* HEADER + NAVIGATION BAR                                                               */
+        /* ===================================================================================== */
+        .main-header {
+            position: sticky;
+            top: 0;
+            background-color: var(--headerbg);
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.25);
+        }
 
-            /* **New Class for Text/Layout inside the box** */
-            /* This is where you would put styles that arrange the content (like making it a column)
-            or set the default font/size/color for content in this box. */
-            .text-content {
-                display: flex; 
-                flex-direction: column;
-                align-items: center; /* Centers items horizontally */
-                justify-content: center; /* Centers items vertically if there is extra space */
-                font-family: 'Arial', sans-serif; /* Example: Set a specific font */
-                color:  var(--hrtxtc); /* #333; /* Example: Set a text color */
-                font-size: 16px; /* Example: Set a font size */
-            }
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1100px;
+            margin: auto;
+            height: 64px;
+        }
 
-            /* You can create other helper classes for different fonts/styles, for example: */
-            .serif-font {
-                font-family: 'Georgia', serif;
-                font-size: 20px;
-                color: var(--txtcola)
-            }
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--hrtxtc);
+            text-decoration: none;
+        }
+        .logo-accent {
+            color: var(--accent-teal);
+        }
 
+        /* Dropdown button */
+        .dropbtn {
+            /*button style*/
+            border: none;
+            background-color: transparent; /* override from your style */
+            color: var(--hrtxtc);
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 6px 16px;
+            border-radius: 0;
+            transition: 0.2s;
+        }
 
-            .main-header {
-                position: sticky;
-                top: 0;
-                z-index: 50;
-                background-color: var(--headerbg);
-                /* Equivalent of shadow-md */
-                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
-                
-            }
+        .nav-dropdown {
+            position: relative;
+        }
 
-            /* 4. Content Container (Replaces max-w-7xl, mx-auto, px-4, sm:px-6, lg:px-8) */
-            .header-container {
-                display:flex;
-            }
+        .dropdown-content {
+            background-color: var(--headerbg);
+            list-style-type: none;
+            display: none;
+            position: absolute;
+            min-width: 140px;
+            padding: 10px;
+            margin: 0;
+            border-radius: 3px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+        }
 
-            /* 5. Flex Layout (Replaces flex, justify-between, items-center, h-16) */
-            .header-content {
-                display: flex;
-                align-items: center;
-                height: 64px; /* Equivalent of h-16 (64px) */
-            }
-            /* 6. Logo Styling (Replaces text-2xl, font-extrabold, text-gray-900, tracking-tight) */
-            .logo {
-                display: flex;
-                font-size: 28px;
-                font-weight: 800;
-                color: var(--hrtxtc);
-                letter-spacing: -0.025em;
-                text-decoration: none;
-                margin-left: auto;
-                /*<!-- if 10vw instead it is a bit less dynamic but not locked to the midle--> */
-            }
-            .logo-accent {
-                color: var(--accent-teal);
-            }
-            
-            /* 1. Variable Definitions (Replaces Tailwind Config Colors) */
-            /* Default theme (dark) */
-            :root {
-                --primary-blue: #1e40af; /* Darker blue */
-                --accent-teal: #2dd4bf; /* Bright teal */
-                --gray-900: #111827;
-                --gray-600: #4b5563;
-                --gray-400: #9ca3af;
-                --gray-100: #f3f4f6;
-                --white: #ffffff;  /* white */
+        .dropdown-content li a {
+            display: block;
+            padding: 6px 4px;
+            text-decoration: none;
+            font-size: 15px;
+            color: var(--hrtxtc);
+        }
 
-                --headerbg: #4b5563; /* header background colour */
-                --hrtxtc: #d6d3cd; /* header text colour a */
-                --txtcola: #d6d3cd ; /* default text colour a  */
+        .nav-dropdown:hover .dropdown-content {
+            display: block;
+        }
 
-                --bgpsqcol: #484e51; /* background pattern-squares-colour */
-                --bgpocol: #2a2e2f; /* background pattern-outline-colour */
+        /* Navigation inline links */
+        .nav-inline {
+            display: flex;
+            gap: 16px;
+        }
+        .nav-inline a {
+            color: var(--hrtxtc);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .nav-inline a:hover {
+            text-decoration: underline;
+        }
 
-                --textartbgcol:#35374680; /* text_art class background colour */
-            }
+        .dropdown-arrow {
+            font-size: smaller;
+            margin-left: 5px;
+            transition: transform 0.1s ease-in-out;
+        }
+        .nav-dropdown:hover .dropdown-arrow {
+            transform: rotate(90deg);
+        }
 
-            /* Light theme */
-            .theme-light {
-                background-color: #ffffff;
-            }
+        /* ===================================================================================== */
+        /* MAIN CONTENT LAYOUT                                                                   */
+        /* ===================================================================================== */
+        main {
+            display: flex;
+            justify-content: center;
+            padding: 40px 10px;
+        }
 
-           /*.Dark theme */
-            .theme-dark {
-                --primary-blue: #1e40af; /* Darker blue */
-                --accent-teal: #2dd4bf; /* Bright teal */
-                --gray-900: #111827;
-                --gray-600: #4b5563;
-                --gray-400: #9ca3af;
-                --gray-100: #f3f4f6;
-                --white: #ffffff;  /* white */
+        .article {
+            max-width: 850px; /* centered readable width */
+            display: flex;
+            justify-content: center;
+        }
 
-                --headerbg: #4b5563; /* header background colour */
-                --hrtxtc: #d6d3cd; /* header text colour a */
-                --txtcola: #d6d3cd ; /* default text colour a  */
+        .text_art {
+            border: 2px solid rgba(0,0,0,0.3);
+            border-radius: 10px;
+            background-color: var(--textartbgcol);
+            padding: 16px;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+            width: 100%;
+        }
 
-                --bgpsqcol: #484e51; /* background pattern-squares-colour */
-                --bgpocol: #2a2e2f; /* background pattern-outline-colour */
+        .text-content {
+            display: flex;
+            flex-direction: column;
+            color: var(--txtcola);
+            font-size: 18px;
+            gap: 14px;
+        }
 
-                --textartbgcol:#35374680; /* text_art class background colour */
-            }   /* You can keep the original root values or override here */
+        .serif-font {
+            font-family: Georgia, serif;
+            font-size: 20px;
+        }
 
-            
-        </style>
-    </head>
+        /* ===================================================================================== */
+        /* FOOTER                                                                                */
+        /* ===================================================================================== */
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 14px;
+            font-size: 14px;
+        }
+    </style>
+</head>
 
-    <body class ="overide-pattern-bg-tiles">
-        <header class="main-header">
-            <div class="header-container">
-                <div class="header-content">
-                    <!--   -->
-                    <nav class="nav-dropdown"> 
-                        <button class="dropbtn" >Meny 
-                            <span class="dropdown-arrow">&#9654;</span>
-                        </button>
-                        <ul class="dropdown-content">
-                            <li><a href="visitkort.html">Visitkort</a></li>
-                            <li><a href="G-Inlämning-8-Navigation-Bar.html">error</a></li>
-                            <li><a href="home.html">hus</a></li>
-                            <li><a href="pr-project.html">pr</a></li>
-                            <li><a href="geminis-generatedsite.html"> lsd</a></li>
-                        </ul>
-                    </nav>
+<body class="overide-pattern-bg-tiles theme-dark">
 
-                    <!-- Logo -->
-                    <a href="https://tertial.store" class="logo">
-                        Tertial<span class="logo-accent">.</span>Store
-                    </a>
+<header class="main-header">
+    <div class="header-content">
+        
+    <!-- Dropdown right -->
+    <nav class="nav-dropdown">
+        <button class="dropbtn">More<span class="dropdown-arrow">&#9654;</span></button>
+        <ul class="dropdown-content">
+            <li><a href="news.html">News</a></li>
+            <li><a href="kontakt.html">lamps</a></li>
+            <li><a href="om.html">about</a></li>
+            <li><a href="error.html">Link 4</a></li>
+        </ul>
+    </nav>
 
-                    <nav class="nav-dropdown"> 
-                        <button class="dropbtn">More 
-                            <span class="dropdown-arrow">&#9654;</span>
-                        </button>
-                        <ul class="dropdown-content">
-                            <li><a href="error.html">Link 1</a></li>
-                            <li><a href="error.html">Link 2</a></li>
-                            <li><a href="error.html">Link 3</a></li>
-                            <li><a href="error.html">Link 4</a></li>
-                        </ul>
-                    </nav>
-                    <nav> <button id="theme-toggle" class="dropbtn">Theme</button></nav>
-                </div>
+    <!-- Main inline navigation for real pages -->
+    <nav class="nav-inline">
+        <a href="index.html">Hem</a>
+        <a href="om.html">Om</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="nyheter.html">Nyheter</a>
+    </nav>
+
+    <!-- Logo -->
+    <a href="https://tertial.store" class="logo">
+        Tertial<span class="logo-accent">.</span>Store
+    </a>
+
+    <!-- Theme Button -->
+    <button id="theme-toggle" class="dropbtn">Theme</button>
+
+    </div>
+</header>
+
+<main>
+    <article class="article">
+        <div class="text_art">
+            <div class="text-content">
+                <p>At scelerisque per dis hac platea gravida per. Commodo molestie orci montes cum pulvinar. Magna orci tellus dapibus iaculis, semper eu luctus.</p>
+                <p>Morbi convallis viverra porta scelerisque nostra metus commodo volutpat nibh vivamus. Sit mus sodales sem augue cursus habitasse?
+                Primis velit nascetur sociis at nisl platea nostra himenaeos malesuada auctor?</p>
+                <p>Ante at nulla ante. Mus semper iaculis taciti porttitor justo. Faucibus ullamcorper risus facilisi?
+                Congue aliquet porta placerat nibh nam! Mollis posuere cras massa potenti, varius a felis adipiscing sollicitudin platea mollis ridiculus.</p>
+                <p>Lorem quam dolor duis dis litora vitae id mi velit tellus malesuada.</p>
             </div>
-        </header>
-        <main>
-            <aside>
-                <div class="text_art">
-                    <div class="serif-font">
-                    content
-                    </div>
-                </div>
-            </aside>
-            <article class="article">
-                <span class="text_art">
-                    <span class="text-content">
-                        <p>
-                            At scelerisque per dis hac platea gravida per. Commodo molestie orci montes cum pulvinar. Magna orci tellus dapibus iaculis, semper eu luctus.
-                        </p>
-                        <p>
-                            Morbi convallis viverra porta scelerisque nostra metus commodo volutpat nibh vivamus. Sit mus sodales sem augue cursus habitasse? 
-                            <br>Primis velit nascetur sociis at nisl platea nostra himenaeos malesuada auctor?
-                        </p>
-                        <p>
-                            Ante at nulla ante. Mus semper iaculis taciti porttitor justo. Faucibus ullamcorper risus facilisi? 
-                            <br>Congue aliquet porta placerat nibh nam! Mollis posuere cras massa potenti, varius a felis adipiscing sollicitudin platea mollis ridiculus.
-                        </p>
-                        <p>
-                            Lorem quam dolor duis dis litora vitae id mi velit tellus malesuada.
-                        </p>
-                        <p>
-                            Congue sit vestibulum eu ultricies egestas ultricies vel lacus sagittis risus. Libero tempor dapibus scelerisque natoque.
-                        </p>
-                        <p>
-                            At scelerisque per dis hac platea gravida per. Commodo molestie orci montes cum pulvinar. Magna orci tellus dapibus iaculis, semper eu luctus.
-                        </p>
-                        <p>
-                            Morbi convallis viverra porta scelerisque nostra metus commodo volutpat nibh vivamus. Sit mus sodales sem augue cursus habitasse? 
-                            <br>Primis velit nascetur sociis at nisl platea nostra himenaeos malesuada auctor?
-                        </p>
-                        <p>
-                            Ante at nulla ante. Mus semper iaculis taciti porttitor justo. Faucibus ullamcorper risus facilisi? 
-                            <br>Congue aliquet porta placerat nibh nam! Mollis posuere cras massa potenti, varius a felis adipiscing sollicitudin platea mollis ridiculus.
-                        </p>
-                        <p>
-                            Lorem quam dolor duis dis litora vitae id mi velit tellus malesuada.
-                        </p>
-                        <p>
-                            Congue sit vestibulum eu ultricies egestas ultricies vel lacus sagittis risus. Libero tempor dapibus scelerisque natoque.
-                        </p>
-                    </span>
-                </span>
-            </article>
-        </main>
-        <!--- <div class="text_art"></div> --->
-        <footer class="footer">
-            &copy; Elev på Tullängsgymnasiet oskar ryd-
-            <p>ee</p>
-        </footer>
-    </body>
+        </div>
+    </article>
+</main>
 
-    <script>
-        const body = document.body;
-        const toggleBtn = document.getElementById('theme-toggle');
+<footer class="footer2">
+    <div>
+        <p>&copy; Elev på Tullängsgymnasiet Oskar Ryd</p>
+    </div>
+</footer>
 
-        body.classList.add('theme-dark'); // default
+<script>
+    /* Simple Theme Toggle */
+    const body = document.body;
+    const toggleBtn = document.getElementById('theme-toggle');
 
-        toggleBtn.addEventListener('click', () => {
-            body.classList.toggle('theme-light');
-            body.classList.toggle('theme-dark');
-        });
-    </script>
+    toggleBtn.addEventListener('click', () => {
+        body.classList.toggle('theme-light');
+        body.classList.toggle('theme-dark');
+    });
+</script>
+
+</body>
 </html>

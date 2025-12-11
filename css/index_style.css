@@ -1,0 +1,262 @@
+/* ===================================================================================== */
+/* BASE THEME VARIABLES: All colors & theme toggling happens using these variables       */
+/* ===================================================================================== */
+:root {
+    --primary-blue: #1e40af;
+    --accent-teal: #2dd4bf;
+    --gray-900: #111827;
+    --gray-600: #4b5563;
+    --gray-400: #9ca3af;
+    --gray-100: #f3f4f6;
+    --white: #ffffff;
+
+    --headerbg: #4b5563;
+    --hrtxtc: #d6d3cd;
+    --txtcola: #d6d3cd;
+
+    --bgpsqcol: #484e51;
+    --bgpocol: #2a2e2f;
+
+    --textartbgcol:#35374680;
+    --textbeige: #EDE8D0;
+}
+
+/* Light theme overrides */
+.theme-light {
+    --headerbg: #d1d5db;
+    --hrtxtc: #111;
+    --txtcola: #111;
+    --bgpsqcol: #f5f5f5;
+    --bgpocol: #b7bac0;
+    --textartbgcol:#ffffffc9;
+}
+
+/* ===================================================================================== */
+/* BACKGROUND GRID PATTERN (your override version stays default)                         */
+/* ===================================================================================== */
+body.overide-pattern-bg-tiles {
+    height: 100%;
+    width: 100%;
+    background-image:
+        linear-gradient(to right, var(--bgpocol) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--bgpocol) 2px, transparent 1px);
+    background-size: 50px 50px;
+    background-color: var(--bgpsqcol);
+    margin: 0;
+}
+
+/* ===================================================================================== */
+/* HEADER + NAVIGATION BAR                                                               */
+/* ===================================================================================== */
+.main-header {
+    position: sticky;
+    top: 0;
+    background-color: var(--headerbg);
+    z-index: 100;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.25);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1100px;
+    margin: auto;
+    height: 64px;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--hrtxtc);
+    text-decoration: none;
+}
+.logo-accent {
+    color: var(--accent-teal);
+}
+
+/* Dropdown button */
+
+/* ==================================================================================== */
+/* DROPDOWN NAVIGATION STYLES                                                           */
+/* ==================================================================================== */
+
+
+.dropbtn {
+    /*button style*/
+    border: transparent;
+    background-color: inherit; /* override from your style */
+
+    color: var(--hrtxtc);
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 6px 16px;
+    border-radius: 0;
+    transition: 0.2s;
+}
+
+.dropbtn:hover {
+
+    background-color: color-mix(in srgb, var(--headerbg) 88%, black);
+    /* The text color can remain the same, or you can adjust it for better contrast */
+    color: var(--hrtxtc);
+    transition: ease 0.2s;
+}
+
+
+.nav-dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    background-color: var(--headerbg);
+    list-style-type: none;
+    display: none;
+    position: absolute;
+    min-width: 140px;
+    padding: 10px;
+    margin: 0;
+    border-radius: 3px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+}
+
+.dropdown-content li a {
+    display: block;
+    padding: 6px 4px;
+    text-decoration: none;
+    font-size: 15px;
+    color: var(--hrtxtc);
+}
+
+.dropdown-content li a:hover {
+    /* Use color-mix to blend the existing background color with black.
+       This darkens the color by 12% (12% of the final color is black). 
+       You can change 12% to any value you like.
+    */
+    background-color: color-mix(in srgb, var(--headerbg) 88%, black);
+    /* The text color can remain the same, or you can adjust it for better contrast */
+    color: var(--hrtxtc);
+    transition: ease 0.2s;
+}
+
+
+.nav-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/*
+    # .nav-dropdown:hover .dropdown-content {
+    #     display: block;
+    #     background-color: hsl(
+    #             210, 
+    #             10%, 
+    #             calc(var(--base-lightness) - 10%)
+    #         );  / Now 85% lightness  /
+    # }
+*/
+
+
+/* Style for the arrow inside the button */
+.dropdown-arrow {
+    display: inline-block;
+    margin-left: 5px; /* Space between "Meny" and the arrow */
+    /* Ensure the transition is smooth */
+    transition: transform 0.1s ease-in-out; 
+    /* The arrow starts pointing right */
+    font-size: smaller;
+}
+
+/* Rotate the arrow when the mouse hovers over the entire dropdown area */
+.nav-dropdown:hover .dropdown-arrow {
+    /* Rotates the right-arrow (&#9654;) 90 degrees to point DOWN */
+    transform: rotate(90deg);
+}
+
+
+
+
+/* Navigation inline links */
+.nav-inline {
+    display: flex;
+    gap: 16px;
+}
+.nav-inline a {
+    color: var(--hrtxtc);
+    text-decoration: none;
+    font-weight: 600;
+}
+.nav-inline a:hover {
+    text-decoration: underline;
+}
+
+
+/* ===================================================================================== */
+/* MAIN CONTENT LAYOUT                                                                   */
+/* ===================================================================================== */
+main {
+    display: flex;
+    justify-content: center;
+    padding: 40px 10px;
+}
+
+.article {
+    max-width: 850px; /* centered readable width */
+    display: flex;
+    justify-content: center;
+}
+
+.text_art {
+    border: 2px solid rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: var(--textartbgcol);
+    padding: 16px;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+    width: 100%;
+}
+
+.text-content {
+    display: flex;
+    flex-direction: column;
+    color: var(--txtcola);
+    font-size: 18px;
+    gap: 14px;
+}
+
+.serif-font {
+    font-family: Georgia, serif;
+    font-size: 20px;
+}
+
+/* ===================================================================================== */
+/* FOOTER                                                                                */
+/* ===================================================================================== */
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    font-size: 14px;
+}
+
+.footer2 {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+}
+
+
+/* ===================================================================================== */
+/* STUPID DIFRENT FONTS STYLE.                                                           */
+/* ===================================================================================== */
+
+.font-baskervville {
+	font-family: Baskerville,Baskerville Old Face,Hoefler Text,Garamond,Times New Roman,serif; 
+}
+
+
+
