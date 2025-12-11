@@ -260,3 +260,76 @@ main {
 
 
 
+/* ===================================================================================== */
+/* STUPID GIMIC LAMP CSS, FOR THE ASIGNMENT.                                           */
+/* ===================================================================================== */
+
+/* --- Lamp Gallery Section Styles --- */
+
+.lamp-gallery-section {
+    padding: 20px;
+    margin: 40px auto; /* Centers the section and adds vertical spacing */
+    max-width: 1200px; /* Limits the max width of the gallery */
+}
+
+/* Gallery Container (uses CSS Grid for layout) */
+.lamp-gallery {
+    display: grid;
+    /* Create responsive columns: at least 300px wide, up to as many as fit */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 30px; /* Space between the lamp cards */
+    padding: 20px 0;
+}
+
+/* Individual Lamp Card */
+.lamp-card {
+    background-color: var(--bg-color-secondary, #2a2a2a); /* Use a suitable background color */
+    border-radius: 8px;
+    overflow: hidden; /* Ensures image corners match card corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out;
+}
+
+.lamp-card:hover {
+    transform: translateY(-5px); /* Lift card on hover for a nice effect */
+}
+
+/* Lamp Image */
+.lamp-image {
+    width: 100%;
+    height: 350px; /* Fixed height for consistent card size */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    display: block;
+}
+
+/* Lamp Text Info */
+.lamp-info {
+    padding: 15px;
+    text-align: center;
+}
+
+.lamp-info h4 {
+    margin-top: 0;
+    color: var(--hr-txt-color, #ffffff); /* Use your theme colors */
+}
+
+.lamp-info p {
+    color: var(--text-color-light, #cccccc);
+    font-size: 0.9em;
+    margin-bottom: 15px;
+}
+
+/* View Details Button */
+.view-details-btn {
+    display: inline-block;
+    background-color: var(--logo-accent-color, #007bff); /* Use your accent color */
+    color: white;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.view-details-btn:hover {
+    background-color: var(--logo-accent-hover, #0056b3);
+}
