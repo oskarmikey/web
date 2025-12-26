@@ -1,0 +1,147 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+### CONFIG (edit these)
+TARGET_DIR="/var/www/webutv"
+REPO_SSH="git@github.com:oskarmikey/web.git"   # SSH form (recommended)
+BRANCH="main"                                  # change to master if needed
+RUN_AS_USER="www-data"                         # nginx user on Debian/Ubuntu
+
+DEPLOY_KEY="$HOME/.ssh/webutv_deploy"
+SSH_CONFIG="$HOME/.ssh/config"
+
+echo "== webutv autodeploy setup =="
+echo "Target:  $TARGET_DIR"
+echo "Repo:    $REPO_SSH"
+echo "Branch:  $BRANCH"
+echo
+
+# Install deps
+apt-get update -y
+apt-get install -y git openssh-client rsync
+
+# Ensure target dir exists
+mkdir -p "$TARGET_DIR"
+
+# Create SSH deploy key if missing
+mkdir -p "$HOME/.ssh"
+chmod 700 "$HOME/.ssh"
+
+if [[ ! -f "$DEPLOY_KEY" ]]; then
+  echo "Generating SSH deploy key: $DEPLOY_KEY"
+  ssh-keygen -t ed25519 -f "$DEPLOY_KEY" -N "" -C "webutv-deploy@$(hostname)"
+else
+  echo "SSH deploy key already exists: $DEPLOY_KEY"
+fi
+
+# Ensure SSH config uses the deploy key for github.com (without clobbering other config)
+if [[ ! -f "$SSH_CONFIG" ]] || ! grep -q "IdentityFile $DEPLOY_KEY" "$SSH_CONFIG"; then
+  echo "Adding SSH config for github.com -> $DEPLOY_KEY"
+  {
+    echo
+    echo "Host github.com"
+    echo "  IdentityFile $DEPLOY_KEY"
+    echo "  IdentitiesOnly yes"
+  } >> "$SSH_CONFIG"
+  chmod 600 "$SSH_CONFIG"
+fi
+
+echo
+echo "== IMPORTANT MANUAL STEP =="
+echo "Add this public key to GitHub as a DEPLOY KEY (read-only is enough):"
+echo "Repo -> Settings -> Deploy keys -> Add deploy key"
+echo "----- BEGIN PUBLIC KEY -----"
+cat "${DEPLOY_KEY}.pub"
+echo "-----  END PUBLIC KEY  -----"
+echo
+echo "After adding the deploy key, press Enter to continue..."
+read -r
+
+# Test SSH to GitHub (won't fully succeed unless key is added)
+echo "Testing GitHub SSH auth..."
+ssh -o StrictHostKeyChecking=accept-new -T git@github.com || true
+echo
+
+# Initialize git repo in-place (NO extra /web folder)
+cd "$TARGET_DIR"
+
+if [[ ! -d ".git" ]]; then
+  echo "Initializing git repo in $TARGET_DIR"
+  git init
+fi
+
+# Set/replace origin
+if git remote get-url origin >/dev/null 2>&1; then
+  echo "Updating existing 'origin' remote"
+  git remote set-url origin "$REPO_SSH"
+else
+  echo "Adding 'origin' remote"
+  git remote add origin "$REPO_SSH"
+fi
+
+echo "Fetching and syncing to origin/$BRANCH (this overwrites tracked files to match GitHub)..."
+git fetch origin
+git checkout -B "$BRANCH" "origin/$BRANCH"
+git reset --hard "origin/$BRANCH"
+git clean -fd
+
+# Permissions for nginx to read
+echo "Fixing permissions for nginx..."
+chown -R "$RUN_AS_USER:$RUN_AS_USER" "$TARGET_DIR"
+find "$TARGET_DIR" -type d -exec chmod 755 {} \;
+find "$TARGET_DIR" -type f -exec chmod 644 {} \;
+
+# Create deploy script
+DEPLOY_SCRIPT="/usr/local/bin/webutv-deploy.sh"
+echo "Creating deploy script: $DEPLOY_SCRIPT"
+cat > "$DEPLOY_SCRIPT" <<EOF
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$TARGET_DIR"
+git fetch origin
+git reset --hard "origin/$BRANCH"
+git clean -fd
+chown -R "$RUN_AS_USER:$RUN_AS_USER" "$TARGET_DIR"
+EOF
+chmod +x "$DEPLOY_SCRIPT"
+
+# systemd service
+SERVICE="/etc/systemd/system/webutv-deploy.service"
+echo "Creating systemd service: $SERVICE"
+cat > "$SERVICE" <<EOF
+[Unit]
+Description=Deploy webutv from GitHub
+
+[Service]
+Type=oneshot
+ExecStart=$DEPLOY_SCRIPT
+EOF
+
+# systemd timer (every 60 seconds)
+TIMER="/etc/systemd/system/webutv-deploy.timer"
+echo "Creating systemd timer: $TIMER"
+cat > "$TIMER" <<'EOF'
+[Unit]
+Description=Run webutv deploy regularly
+
+[Timer]
+OnBootSec=30
+OnUnitActiveSec=60
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+EOF
+
+echo "Enabling timer..."
+systemctl daemon-reload
+systemctl enable --now webutv-deploy.timer
+
+echo
+echo "Done."
+echo "Timer status:"
+systemctl list-timers | grep webutv || true
+echo
+echo "Manual deploy test:"
+systemctl start webutv-deploy.service
+echo "OK."
