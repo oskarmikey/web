@@ -19,6 +19,11 @@
 
     --textartbgcol:#35374680;
     --textbeige: #EDE8D0;
+
+    --space-1: 0.5rem;
+    --space-2: 1rem;
+    --space-3: 1.5rem;
+    --space-4: 2rem;
 }
 
 /* Light theme overrides */
@@ -60,9 +65,10 @@ body.overide-pattern-bg-tiles {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 1100px;
+    max-width: 68.75rem; /* 1100 / 16 */
+    height: 4rem;        /* 64 / 16 */
+    gap: 1rem;           /* 16 / 16 */
     margin: auto;
-    height: 64px;
 }
 
 .logo {
@@ -85,7 +91,7 @@ body.overide-pattern-bg-tiles {
 .dropbtn {
     /*button style*/
     border: transparent;
-    background-color: inherit; /* override from your style */
+    background-color: inherit; /* override from style */
 
     color: var(--hrtxtc);
     text-decoration: none;
@@ -99,7 +105,7 @@ body.overide-pattern-bg-tiles {
 .dropbtn:hover {
 
     background-color: color-mix(in srgb, var(--headerbg) 88%, black);
-    /* The text color can remain the same, or you can adjust it for better contrast */
+    /* The text color can remain the same, or can be adjusted for better contrast */
     color: var(--hrtxtc);
     transition: ease 0.2s;
 }
@@ -132,10 +138,10 @@ body.overide-pattern-bg-tiles {
 .dropdown-content li a:hover {
     /* Use color-mix to blend the existing background color with black.
        This darkens the color by 12% (12% of the final color is black). 
-       You can change 12% to any value you like.
+       Can change 12% to any valu.
     */
     background-color: color-mix(in srgb, var(--headerbg) 88%, black);
-    /* The text color can remain the same, or you can adjust it for better contrast */
+    /* The text color can be adjusted it for better contrast */
     color: var(--hrtxtc);
     transition: ease 0.2s;
 }
@@ -197,21 +203,22 @@ body.overide-pattern-bg-tiles {
 main {
     display: flex;
     justify-content: center;
-    padding: 40px 10px;
+    padding: 2.5rem 1rem;  /* top/bottom | left/right */ /* padding: 40px 10px; */
 }
 
 .article {
     max-width: 850px; /* centered readable width */
     display: flex;
     justify-content: center;
+
 }
 
 .text_art {
-    border: 2px solid rgba(0,0,0,0.3);
-    border-radius: 10px;
+    border: 0.125rem solid rgba(0,0,0,0.3);
+    border-radius: 0.75rem; /* ~12px, visually pleasant */
     background-color: var(--textartbgcol);
-    padding: 16px;
-    box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+    padding: var(--space-2);
+    box-shadow: 0.5rem 0.5rem 1rem rgba(0,0,0,0.3);
     width: 100%;
 }
 
@@ -219,8 +226,12 @@ main {
     display: flex;
     flex-direction: column;
     color: var(--txtcola);
-    font-size: 18px;
-    gap: 14px;
+    font-size: 1.125rem; /* 18 / 16 */
+    gap: 0.875rem;       /* 14 / 16 */
+
+    text-wrap: pretty;
+
+    min-width: 15rem;
 }
 
 .serif-font {
@@ -261,75 +272,101 @@ main {
 
 
 /* ===================================================================================== */
-/* STUPID GIMIC LAMP CSS, FOR THE ASIGNMENT.                                           */
+/* LAYOUT DESIGNE.                                                                       */
 /* ===================================================================================== */
 
-/* --- Lamp Gallery Section Styles --- */
-
-.lamp-gallery-section {
-    padding: 20px;
-    margin: 40px auto; /* Centers the section and adds vertical spacing */
-    max-width: 1200px; /* Limits the max width of the gallery */
-}
-
-/* Gallery Container (uses CSS Grid for layout) */
-.lamp-gallery {
+.page-layout {
     display: grid;
-    /* Create responsive columns: at least 300px wide, up to as many as fit */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    gap: 30px; /* Space between the lamp cards */
-    padding: 20px 0;
+    grid-template-columns: 0 1fr;
+
+    padding: 0 0;
 }
 
-/* Individual Lamp Card */
-.lamp-card {
-    background-color: var(--bg-color-secondary, #2a2a2a); /* Use a suitable background color */
-    border-radius: 8px;
-    overflow: hidden; /* Ensures image corners match card corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease-in-out;
+
+/* ===================================================================================== */
+/* SIDEBAR DESIGNE.                                                                      */
+/* ===================================================================================== */
+
+.sidebar {
+    /* Define the specific size of the block here */
+    width: 24vw; 
+    min-width: 100px;
+    max-width: 230px;
+    height: auto; /* Or 100vh if you want it full height */
+    max-height: 80vh;
+    
+    /* Position it independently */
+    position: fixed;
+    top: 18vh; /* Aligns it below your header/toggle button */
+    background-color: var(--textartbgcol);
+    border-radius: 0.625rem; /* 10px */
+    padding: 20px;
+    box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,0.3);
+    z-index: 100;
+    
+    /* Animation logic */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform: translateX(-200px); /* Start hidden (width + margin) */
+    opacity: 0;
+    pointer-events: none; /* Can't click it while hidden */
 }
 
-.lamp-card:hover {
-    transform: translateY(-5px); /* Lift card on hover for a nice effect */
-}
 
-/* Lamp Image */
-.lamp-image {
-    width: 100%;
-    height: 350px; /* Fixed height for consistent card size */
-    object-fit: cover; /* Ensures the image covers the area without distortion */
-    display: block;
-}
-
-/* Lamp Text Info */
-.lamp-info {
-    padding: 15px;
-    text-align: center;
-}
-
-.lamp-info h4 {
+.sidebar h3 {
     margin-top: 0;
-    color: var(--hr-txt-color, #ffffff); /* Use your theme colors */
+    color: var(--textbeige);
 }
 
-.lamp-info p {
-    color: var(--text-color-light, #cccccc);
-    font-size: 0.9em;
-    margin-bottom: 15px;
+.sidebar-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-/* View Details Button */
-.view-details-btn {
-    display: inline-block;
-    background-color: var(--logo-accent-color, #007bff); /* Use your accent color */
-    color: white;
-    padding: 8px 15px;
+.sidebar-links li {
+    margin: 12px 0;
+}
+
+.sidebar-links a {
+    color: var(--txtcola);
     text-decoration: none;
+    padding: 6px 8px;
     border-radius: 4px;
-    transition: background-color 0.3s;
 }
 
-.view-details-btn:hover {
-    background-color: var(--logo-accent-hover, #0056b3);
+.sidebar-links a:hover {
+    background-color: color-mix(in srgb, var(--textartbgcol) 85%, black);
 }
+
+/* The "Active" state when toggled */
+.sidebar.is-open {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ===================================================================================== */
+
+.sidebar_toggle_btn {
+    display: block; /* Hidden by default */
+    position: fixed;
+    top: 12vh;
+    left: 0vw;
+    background-color: inherit;
+    color: var(--hrtxtc);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    cursor: pointer;
+    z-index: 110; /* Above other content */
+}
+
+.sidebar_toggle_btn:hover {
+    background-color: color-mix(in srgb, var(--headerbg) 88%, black);
+    color: var(--hrtxtc);
+    transition: ease 0.2s;
+}
+
+
+
